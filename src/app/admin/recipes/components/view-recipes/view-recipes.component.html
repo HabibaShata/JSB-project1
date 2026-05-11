@@ -1,0 +1,134 @@
+<section class="d-flex flex-column gap-3">
+  <div class="banner">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-8">
+        <div class="content">
+          <h2>Recipes Items</h2>
+          <p>
+            You can now add your items that any user can order it from the
+            Application and you can edit
+          </p>
+        </div>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <div class="image">
+          <img src="/assets/images/recipe-group.png" alt="food" srcset="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="recipes-details">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-9">
+        <h5>Recipe Table Details</h5>
+        <p>You can check all details</p>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <a class="btn btn-success" routerLink="/dashboard/admin/recipes/add">
+          Add New Item <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="recipe-table-wrapper">
+    <div class="recipe-filters">
+      <form class="d-flex row align-items-center justify-content-between mb-3">
+        <div class="col-8">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search Here"
+            aria-label="Search"
+          />
+        </div>
+
+        <div class="col-4 d-flex align-items-center gap-3">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>tag</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>category</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Item Name</th>
+          <th scope="col">Image</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">tag</th>
+          <th scope="col">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recipe of recipes">
+          <th scope="row">{{ recipe.name }}</th>
+          <td>
+            <div class="image">
+              <img
+                [src]="'https://upskilling-egypt.com:3006/' + recipe.imagePath"
+                alt="Image"
+              />
+            </div>
+          </td>
+          <td>{{ recipe.price }}</td>
+          <td>{{ recipe.description }}</td>
+          <td>{{ recipe.tag.name }}</td>
+          <td>{{ recipe.category[0].name }}</td>
+          <td>
+            <div class="dropdown">
+              <span
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-ellipsis"></i>
+              </span>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a
+                    class="dropdown-item d-flex gap-3 align-items-center"
+                    href="#"
+                    ><i class="fa-regular fa-eye"></i>View</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex gap-3 align-items-center"
+                    href="#"
+                    ><i class="fa-regular fa-pen-to-square"></i>Edit</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex gap-3 align-items-center"
+                    href="#"
+                    ><i class="fa-solid fa-trash-can"></i>Delete</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>

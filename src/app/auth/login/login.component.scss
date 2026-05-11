@@ -1,0 +1,39 @@
+:root{
+  --text-gray: #49494999;
+}
+.login-wrapper{
+ background:rgb(0, 0, 0) url("/assets/images/main-bg.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.login-content{
+  width:746px;
+}
+p{
+
+  color: #49494999;
+}
+input{
+  background: #F7F7F7;
+}
+.links a{
+  color: #000;
+  text-decoration: none;
+}
+
+.pass-eye{
+  background:transparent;
+  border-left: none;
+}
+
+.links .forget-password{
+  color: #4AA35A;
+}
+button{
+  background: #4AA35A;
+  border: #4AA35A;
+  &:hover{
+     background: #4AA35A;
+  }
+}

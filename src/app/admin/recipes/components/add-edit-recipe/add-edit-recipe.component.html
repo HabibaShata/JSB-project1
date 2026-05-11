@@ -1,0 +1,69 @@
+<section>
+  <div class="recipes">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-9">
+        <h3>Fill the<span class="recipes">Recipes</span>!</h3>
+        <p>
+          you can now fill the meals easily using the table and form , click
+          here and sill it with the table !
+        </p>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <button class="btn btn-success">
+          All Recipes <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <form>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Recipe Name"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <select name="" id="">
+          <option value="" selected>Select tag</option>
+          <option value="">Breakfast</option>
+          <option value="">Lunch</option>
+          <option value="">Dinner</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <input type="number" />
+      </div>
+      <div class="mb-3">
+        <select name="" id="">
+          <option value="" selected>Select category</option>
+          <option value="">Breakfast</option>
+          <option value="">Lunch</option>
+          <option value="">Dinner</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Description" />
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <ngx-dropzone (change)="onSelect($event)">
+          <ngx-dropzone-label>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>upload your Img</p>
+          </ngx-dropzone-label>
+          <ngx-dropzone-image-preview
+            ngProjectAs="ngx-dropzone-preview"
+            [removable]="true"
+            (removed)="onRemove(f)"
+            *ngFor="let f of files"
+            [file]="f"
+          >
+          </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+      </div>
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</section>

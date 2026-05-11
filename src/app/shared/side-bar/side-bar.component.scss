@@ -1,0 +1,54 @@
+section {
+  background-color: #1f263e;
+  border-top-right-radius: 58px;
+  height: 100%;
+  .links a {
+    text-decoration: none;
+    color: #ffffffb6;
+    position: relative;
+  }
+  .links li {
+    list-style: none;
+    width: 100%;
+    padding: 10px 6px;
+    position: relative;
+    &:hover {
+      background-color: #00924d1a;
+      transition: all 0.3s ease;
+      a {
+        color: #fff;
+      }
+      &::after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 100%;
+        background-color: #009247;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: width 0.3s ease;
+      }
+    }
+  }
+
+  .links {
+    width: 100%;
+  }
+  .active {
+    a {
+      color: #fff;
+    }
+    background-color: #00924d1a;
+    &::after {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 100%;
+      background-color: #009247;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
