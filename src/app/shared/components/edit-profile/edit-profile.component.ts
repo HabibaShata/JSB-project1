@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditProfileComponent {
  isLoading: boolean = false;
+ isHiden: boolean = false;
   editForm: FormGroup = new FormGroup({
     userName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -19,6 +20,7 @@ export class EditProfileComponent {
 
   sendData(formData: FormGroup): void {
 this.isLoading = true;
+this.isHiden = true;
 }
 
 }
