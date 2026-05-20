@@ -1,0 +1,23 @@
+.view-recipe-wrapper {
+  h1{
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  span{
+    font-size: 21px;
+    font-weight: 400;
+  }
+  mat-dialog-content  {
+    img{
+      border-radius: 12px;
+    }
+
+  }
+  button[disabled]{
+  pointer-events: revert;
+    cursor: not-allowed;
+
+}
+
+}

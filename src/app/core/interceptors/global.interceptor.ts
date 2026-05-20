@@ -14,10 +14,13 @@ export class GlobalInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // token -- baseUlr --lang (ar- eng);
-    const modifedRequest=request.clone({
+    let token=localStorage.getItem("token");
+
+    const modifiedRequest=request.clone({
       url:`${this.baseUrl}${request.url}`,
+      setHeaders:{Authorization: `Bearer ${token}`},
 
     })
-    return next.handle(modifedRequest);
+    return next.handle(modifiedRequest);
   }
 }

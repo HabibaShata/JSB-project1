@@ -1,0 +1,34 @@
+<section class="side-bar-wrapper d-flex flex-column align-items-center gap-4 pt-3">
+  <div class="logo">
+    <img src="../../../../assets/images/3.png" alt="logo " srcset="" />
+  </div>
+  <div class="links">
+    <ul class="list-unstyled d-flex flex-column align-items-center gap-2">
+      <ng-container *ngFor="let item of menu">
+        <li *ngIf="item.isActive" routerLinkActive="active">
+          <a
+            [routerLink]="item.navigationLink"
+            class="d-flex align-items-center gap-3 ms-3"
+            ><i class="fa-solid {{ item.icon }}"></i> {{ item.title }}</a
+          >
+        </li>
+      </ng-container>
+
+      <li>
+        <a
+          class="d-flex align-items-center gap-3 ms-3 disabled-link"
+          (click)="goToChangePassword()"
+        ><i class="fa-solid fa-key"></i> Change Password</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/auth"
+          class="d-flex align-items-center gap-3 ms-3 disabled-link"
+          (click)="onLogOut()"
+        ><i class="fa-solid fa-sign-out"></i> Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</section>

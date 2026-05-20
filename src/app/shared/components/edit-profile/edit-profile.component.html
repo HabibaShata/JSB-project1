@@ -1,0 +1,169 @@
+<div class="loader-layer" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<section class="auth-wrapper d-flex justify-content-center align-items-center">
+  <div class="auth-content bg-white p-5 rounded-3">
+    <div class="header d-flex justify-content-center align-items-center">
+      <img src="../../../../assets/images/logo.png" alt="logo" />
+    </div>
+    <div class="auth-form">
+      <div class="p-3">
+        <h2>Change Your Password</h2>
+        <p>Enter your details below</p>
+      </div>
+      <form
+        class="d-flex flex-column gap-3 p-3"
+        [formGroup]="editForm"
+        (ngSubmit)="sendData(editForm)"
+      >
+        <div class="col-12 my-2">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5"
+              ><i class="fa-solid fa-lock"></i
+            ></span>
+            <input
+              [type]="isHide ? 'password' : 'text'"
+              class="form-control password"
+              placeholder="Old Password"
+              aria-label="Password"
+              aria-describedby="basic-addon5"
+              formControlName="oldPassword"
+            />
+
+            <a
+              class="input-group-text pass-eye"
+              id="basic-addon2"
+              (click)="isHide = !isHide"
+            >
+              <span>
+                <i
+                  class="fa-regular"
+                  [class]="isHide ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
+              </span>
+            </a>
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              changePasswordForm.get('oldPassword')?.errors &&
+              changePasswordForm.get('oldPassword')?.touched
+            "
+          >
+            <p
+              *ngIf="
+                changePasswordForm.get('oldPassword')?.errors?.['required']
+              "
+            >
+              oldPassword is Required
+            </p>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5"
+              ><i class="fa-solid fa-lock"></i
+            ></span>
+            <input
+              [type]="isHide ? 'password' : 'text'"
+              class="form-control password"
+              placeholder="New Password"
+              aria-label="Password"
+              aria-describedby="basic-addon5"
+              formControlName="newPassword"
+            />
+
+            <a
+              class="input-group-text pass-eye"
+              id="basic-addon2"
+              (click)="isHide = !isHide"
+            >
+              <span>
+                <i
+                  class="fa-regular"
+                  [class]="isHide ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
+              </span>
+            </a>
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              changePasswordForm.get('newPassword')?.errors &&
+              changePasswordForm.get('newPassword')?.touched
+            "
+          >
+            <p
+              *ngIf="
+                changePasswordForm.get('newPassword')?.errors?.['required']
+              "
+            >
+              password is Required
+            </p>
+            <p
+              *ngIf="changePasswordForm.get('newPassword')?.errors?.['pattern']"
+            >
+              Password is invalid must have upper , lower ,($#@)
+            </p>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <div class="input-group mb-3 col-6">
+            <span class="input-group-text" id="basic-addon6"
+              ><i class="fa-solid fa-lock"></i
+            ></span>
+            <input
+              [type]="isHide ? 'password' : 'text'"
+              class="form-control password"
+              placeholder="Confirm New Password"
+              aria-label="Password"
+              aria-describedby="basic-addon6"
+              formControlName="confirmNewPassword"
+            />
+
+            <a
+              class="input-group-text pass-eye"
+              id="basic-addon2"
+              (click)="isHide = !isHide"
+            >
+              <span>
+                <i
+                  class="fa-regular"
+                  [class]="isHide ? 'fa-eye-slash' : 'fa-eye'"
+                ></i>
+              </span>
+            </a>
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              changePasswordForm.get('confirmNewPassword')?.errors?.[
+                'required'
+              ] && changePasswordForm.get('confirmNewPassword')?.touched
+            "
+          >
+            <p>confirm password is Required</p>
+          </div>
+
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              changePasswordForm.hasError('mismatch') &&
+              changePasswordForm.get('confirmNewPassword')?.touched
+            "
+          >
+            <p>Passwords do not match.</p>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block rounded-2"
+          [disabled]="changePasswordForm.invalid"
+        >
+          Change Password
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

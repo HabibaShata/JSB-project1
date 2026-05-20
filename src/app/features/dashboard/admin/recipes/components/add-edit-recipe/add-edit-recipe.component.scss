@@ -1,0 +1,33 @@
+section {
+  .recipes {
+    background-color: #f0ffef;
+    padding: 22px;
+    border-radius: 15px;
+    span.recipes {
+      color: #009247;
+    }
+  }
+  ngx-dropzone{
+    width: 100%;
+    background-color: #F1FFF0;
+    border-color: #009247;
+    span{
+      color: #009247;
+    }
+  }
+  .form select, .form textarea , .form input {
+    padding: 16px 20px;
+    border: none;
+    background-color:#F7F7F7;
+    border-radius: 8px;
+  }
+  .form .input-group-text {
+    border: none;
+  }
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events:revert;
+}
+
+}

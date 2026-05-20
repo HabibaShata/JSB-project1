@@ -1,0 +1,102 @@
+<div class="loader-layer" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<section class="d-flex flex-column gap-3">
+  <div class="recipe-table-wrapper">
+    <div class="recipe-filters">
+      <form class="d-flex row align-items-center justify-content-between mb-3">
+        <div class="col-8">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search Here"
+            aria-label="Search"
+            [value]="searchInput"
+            (input)="onSearch($any($event.target).value)"
+          />
+        </div>
+
+        <div class="col-4 d-flex align-items-center gap-3">
+          <select
+            class="form-select"
+            aria-label="Filter by tag"
+            name="tagFilter"
+            [(ngModel)]="selectedTagId"
+            (ngModelChange)="onFilterByTag()">
+            <option [ngValue]="null">All tags</option>
+            <option *ngFor="let tag of tags"
+                    [ngValue]="tag.id">
+              {{tag.name}}
+            </option>
+          </select>
+          <select
+            class="form-select"
+            aria-label="Filter by category"
+            name="categoryFilter"
+            [(ngModel)]="selectedCategoryId"
+            (ngModelChange)="onFilterByCategory()">
+            <option [ngValue]="null">All category</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.id">{{cat.name}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Item Name (AR)</th>
+          <th scope="col">Item Name (EN)</th>
+          <th scope="col">price</th>
+          <th scope="col">Description (EN)</th>
+          <th scope="col">Image</th>
+          <th scope="col">Calories</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="recipes.length>0">
+        <tr *ngFor="let recipe of recipes">
+          <th scope="row">{{ recipe.name }}</th>
+          <td>
+            <div class="image">
+              <img
+                [src]="'https://upskilling-egypt.com:3006/' + recipe.imagePath"
+                alt="Image"
+              />
+            </div>
+          </td>
+          <td>{{ recipe.price }}</td>
+          <td>{{ recipe.description }}</td>
+          <td>{{ recipe.tag?.name }}</td>
+          <td>{{ recipe.category[0]?.name }}</td>
+          <td>
+
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"  (click)="openViewDialog(recipe)">
+            </mat-icon>
+          </td>
+        </tr>
+      </ng-container>
+        <tr *ngIf="!recipes.length">
+          <td colspan="7" class="text-center py-4">
+            <div>
+              <img src="../../../../../../assets/images/no-data.png" alt="No data">
+              <h4>No Data !</h4>
+              <p>There are no recipes to show on this page.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination-wrapeer d-flex justify-content-center align-items-center">
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="this.totalNumberOfRecords"
+        [pageSize]="this.pageSize"
+        [pageIndex]="this.pageIndex"
+        [pageSizeOptions]="pageSizeOptions"
+        aria-label="Select page">
+      </mat-paginator>
+
+    </div>
+  </div>
+</section>

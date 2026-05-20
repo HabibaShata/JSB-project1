@@ -1,0 +1,101 @@
+<section>
+  <div class="recipes">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-9">
+        <h3>Fill the<span class="recipes">Recipes</span>!</h3>
+        <p>
+          you can now fill the meals easily using the table and form , click
+          here and sill it with the table !
+        </p>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <a class="btn btn-success"  routerLink="/dashboard/admin/recipes">
+          All Recipes <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="form">
+    <form class="row mt-5 w-75 mx-auto" [formGroup]="addRecipeForm" (ngSubmit)="onSaveRecipe()">
+      <div class="mb-3 col-12">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Recipe Name"
+          aria-describedby="emailHelp"
+          formControlName="name"
+        />
+      </div >
+      <div class="alert alert-danger" *ngIf="addRecipeForm.get('name')?.errors && addRecipeForm.get('name')?.touched">
+        <p *ngIf="addRecipeForm.get('name')?.errors?.['required']"> *Recipe Name is Required</p>
+        <p *ngIf="addRecipeForm.get('name')?.errors?.['minlength']">  length of Recipe name must  greater than 6 letters </p>
+      </div>
+      <div class="mb-3 col-12">
+        <select  class="w-100" formControlName="tagId">
+          <option value="" disabled selected>select Tag</option>
+          <option  *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+        </select>
+      </div>
+      <div class="alert alert-danger" *ngIf="addRecipeForm.get('tagId')?.errors && addRecipeForm.get('tagId')?.touched">
+        <p *ngIf="addRecipeForm.get('tagId')?.errors?.['required']"> *Tags are  Required</p>
+      </div>
+
+      <div class="input-group mb-3 col-12">
+        <input type="text" class="form-control" formControlName="price">
+        <span class="input-group-text">Egp</span>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="addRecipeForm.get('price')?.errors && addRecipeForm.get('price')?.touched">
+        <p *ngIf="addRecipeForm.get('price')?.errors?.['required']"> *price is  Required</p>
+        <p *ngIf="addRecipeForm.get('price')?.errors?.['pattern']"> *Price must contain numbers only</p>
+        <p *ngIf="addRecipeForm.get('price')?.errors?.['min']">*Price must be at least 20</p>
+      </div>
+      <div class="mb-3 col-12">
+        <select name="" id="" class="w-100" formControlName="categoriesIds">
+          <option value="" selected  disabled>Select category</option>
+          <option  *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+
+        </select>
+      </div>
+
+      <div class="mb-3 col-12">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description"></textarea>
+
+      </div>
+      <div class="alert alert-danger" *ngIf="addRecipeForm.get('description')?.errors && addRecipeForm.get('description')?.touched">
+        <p *ngIf="addRecipeForm.get('description')?.errors?.['required']"> *Description is  Required</p>
+        <p *ngIf="addRecipeForm.get('description')?.errors?.['minlength']">*Description must be at least 10 letters</p>
+      </div>
+      <div class="col-12 d-flex align-items-center justify-content-center my-4">
+        <ngx-dropzone (change)="onSelect($event)" >
+          <ngx-dropzone-label *ngIf="!previewFiles.length">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Drag & Drop or <span>Choose a Item Image</span> to Upload</p>
+          </ngx-dropzone-label>
+          <ngx-dropzone-image-preview
+            ngProjectAs="ngx-dropzone-preview"
+            [removable]="imageChanged"
+            (removed)="onRemove(file)"
+            *ngFor="let file of previewFiles"
+            [file]="file"
+          >
+          </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+      </div>
+      <div class="gap-3 d-flex w-auto ms-auto" >
+        <button type="reset"  class="btn  btn-outline-success" (click)="resetForm()">cancel</button>
+        <button type="submit" class="btn btn-success" [disabled]="addRecipeForm.invalid" >
+          <ng-container *ngIf="recipeId" >
+            update
+          </ng-container>
+          <ng-container *ngIf="!recipeId">
+            Save
+          </ng-container>
+
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+</section>

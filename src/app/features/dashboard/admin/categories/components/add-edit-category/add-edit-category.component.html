@@ -1,0 +1,25 @@
+<section class="add-edit-category">
+  <div class="title d-flex justify-content-between align-items-center">
+    <h1 mat-dialog-title >
+      <ng-container *ngIf="isEdite">{{title}} </ng-container>
+      <ng-container *ngIf="isView">View </ng-container>
+      <ng-container *ngIf="!isEdite && !isView">Add </ng-container>
+      Category</h1>
+
+    <span  mat-dialog-close  class="dialog-header text-end p-3 ">
+    <i class="fa-regular fa-circle-xmark text-danger fs-3"></i>
+    </span>
+  </div>
+
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="Category Name " [disabled]="isView">
+    </mat-form-field>
+  </div>
+  <div  class="text-end p-3">
+    <button  [mat-dialog-close]="name"  mat-stroked-button color="warn" *ngIf="!isView" >
+      <ng-container *ngIf="isEdite">{{btnText}} </ng-container>
+      <ng-container *ngIf="!isEdite">Add</ng-container> </button>
+  </div>
+
+</section>

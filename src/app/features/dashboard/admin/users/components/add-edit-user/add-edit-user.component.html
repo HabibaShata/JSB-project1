@@ -1,0 +1,71 @@
+<section>
+<!--  <div class="recipe-list">-->
+<!--    <div class="row align-items-center justify-content-between">-->
+<!--      <div class="col-9">-->
+<!--        <h3>Fill the<span class="recipe-list">Recipes</span>!</h3>-->
+<!--        <p>-->
+<!--          you can now fill the meals easily using the table and form , click-->
+<!--          here and sill it with the table !-->
+<!--        </p>-->
+<!--      </div>-->
+<!--      <div class="col-3 d-flex align-items-center justify-content-end">-->
+<!--        <a class="btn btn-success"  routerLink="/dashboard/admin/recipe-list">-->
+<!--          All Recipes <i class="fa-solid fa-arrow-right"></i>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="form">
+      <div class="mb-3 col-12">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Recipe Name"
+          aria-describedby="emailHelp"
+         [value]="userData.userName"
+          [disabled]="!userData"
+        />
+      </div >
+
+      <div class="mb-3 col-12">
+
+      </div>
+
+
+      <div class="input-group mb-3 col-12">
+        <input type="text" class="form-control" >
+        <span class="input-group-text">Egp</span>
+
+      </div>
+
+      <div class="mb-3 col-12">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+      </div>
+
+      <div class="col-12 d-flex align-items-center justify-content-center my-4">
+        <ngx-dropzone>
+          <ngx-dropzone-label *ngIf="!previewFiles.length">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Drag & Drop or <span>Choose a Item Image</span> to Upload</p>
+          </ngx-dropzone-label>
+          <ngx-dropzone-image-preview
+            ngProjectAs="ngx-dropzone-preview"
+            *ngFor="let file of previewFiles"
+            [file]="file"
+          >
+          </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+      </div>
+      <div class="gap-3 d-flex w-auto ms-auto" >
+        <button type="reset"  class="btn  btn-outline-success" >cancel</button>
+        <div  class="text-end p-3">
+          <button  [mat-dialog-close]="userData"  mat-stroked-button color="warn" *ngIf="!isView" >
+            <ng-container *ngIf="isEdite">{{btnText}} </ng-container>
+            <ng-container *ngIf="!isEdite">Add</ng-container> </button>
+        </div>
+
+      </div>
+
+
+  </div>
+</section>

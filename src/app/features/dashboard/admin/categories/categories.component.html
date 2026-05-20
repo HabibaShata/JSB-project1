@@ -1,0 +1,92 @@
+<div class="loader-layer" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<section class="d-flex flex-column gap-3 ">
+  <div class="banner p-3">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-8">
+        <div class="content">
+          <h2>Categories <span>Items</span> </h2>
+          <p>
+            You can now add your items that any user can order it from the Application and you can edit
+          </p>
+        </div>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <div class="image">
+          <img src="/src/assets/images/recipe-group.png" alt="food" srcset="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-details">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-9">
+        <h5>Categories Table Details</h5>
+        <p>You can check all details</p>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">
+        <a class="btn btn-success" (click)="openAddDialog()">
+          Add New Category <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="category-table-wrapper">
+    <table class="table table-striped mb-3">
+      <thead>
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope="col">creationDate</th>
+        <th scope="col">modificationDate</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <ng-container *ngIf="categories.length>0">
+        <tr *ngFor="let category of categories; let index=index">
+          <th scope="row">{{ category.name }}</th>
+          <td>{{ category.creationDate| date:'EEEE, MMMM d, y'}}</td>
+          <td>{{ category.modificationDate| date:'EEEE, MMMM d, y' }}</td>
+          <td>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_horiz" [matMenuTriggerFor]="menu"></mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openViewDialog(category)">
+                <i class="fa-regular fa-eye"></i>
+                View</button>
+              <button mat-menu-item (click)="openEditDialog(category)">
+                <i class="fa-regular fa-pen-to-square"></i>
+                Edit</button>
+              <button mat-menu-item (click)="openDeleteDialog(category)">
+                <i class="fa-solid fa-trash-can"></i>
+                Delete</button>
+            </mat-menu>
+          </td>
+        </tr>
+      </ng-container>
+      <tr *ngIf="!categories.length">
+        <td colspan="7" class="text-center py-4">
+          <div>
+            <img src="../../../../../assets/images/no-data.png" alt="No data">
+            <h4>No Data !</h4>
+            <p>There are no recipes to show on this page.</p>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center ">
+      <mat-paginator #paginator
+                     class="demo-paginator"
+                     (page)="handlePageEvent($event)"
+                     [length]="totalNumberOfRecords"
+                     [pageSize]="this.pageSize"
+                     [pageSizeOptions]="this.pageSizeOptions"
+                     [pageIndex]="this.totalNumberOfPages"
+                     aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</section>

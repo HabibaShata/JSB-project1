@@ -1,0 +1,45 @@
+<section class="nav-wrapper my-2 w-100 p-3 mb-4">
+  <div class="row align-items-center">
+    <div class="col-9">
+      <div class="left">
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search Here"
+            aria-label="Search"
+          />
+        </form>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="right d-flex justify-content-between align-items-center">
+        <div class="profile d-flex align-items-center w-75">
+          <div class="d-flex align-items-center gap-2">
+            <div class="profile-img">
+              <img [src]="userImage" [alt]="this.currentUser.userName" />
+            </div>
+            <span>{{ this.currentUser.userName }}</span>
+          </div>
+          <button mat-button [matMenuTriggerFor]="belowMenu">
+            <i class="fa-solid fa-angle-down"></i>
+          </button>
+          <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item (click)="editProfile()">Edit Profile</button>
+            <button mat-menu-item>Setting</button>
+          </mat-menu>
+        </div>
+        <div class="notification">
+          <span class="position-relative">
+            <i class="fa-solid fa-bell"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+            >
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

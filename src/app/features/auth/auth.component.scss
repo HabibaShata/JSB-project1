@@ -1,0 +1,52 @@
+
+.auth-wrapper{
+  background:
+    linear-gradient(51.22deg, rgba(55, 140, 47, 0.63) -22.39%, rgba(0, 0, 0, 0.6237) 61.76%),
+    url("/assets/images/main-bg.jpg") center center / cover no-repeat;
+    height: 100vh;
+}
+
+.auth-content{
+  width:746px;
+}
+p{
+
+  color: #49494999;
+}
+input{
+  background: #F7F7F7;
+}
+.links a{
+  color: #000;
+  text-decoration: none;
+}
+
+.pass-eye{
+  background:transparent;
+  border-left: none;
+}
+
+.links .forget-password{
+  color: #4AA35A;
+}
+button{
+  background: #4AA35A;
+  border: #4AA35A;
+
+}
+button:disabled {
+  cursor: not-allowed !important;
+  background: #4AA35A;
+  pointer-events: revert;
+}
+
+.loader-layer{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: #2f2a2a6e;
+}
